@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Student;
+import model.Usager;
 
 /**
  *
@@ -34,6 +35,9 @@ public class StudentListTable extends AbstractTableModel
     @Override
     public int getRowCount() {
        return students.size();
+       Usager u = new Usager();
+       u.getId();
+       u.setId(123);
     }
 
     @Override
