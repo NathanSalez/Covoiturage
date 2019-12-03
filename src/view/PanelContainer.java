@@ -16,13 +16,15 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cette classe détermine la structure graphique de la fenêtre de l'application.<br/>
  * Elle contient les vues de l'application.<br/>
+ * Enfin, elle contient les données de la session d'un utilisateur
  * @author Nathan Salez
  */
 public class PanelContainer extends JPanel {
@@ -30,8 +32,6 @@ public class PanelContainer extends JPanel {
     CardLayout layoutManager;
     
     private WindowApplication p;
-    
-    private JComboBox listTraduction;
     
     private JLabel subtitle;
     
@@ -42,6 +42,17 @@ public class PanelContainer extends JPanel {
     private JPanel topPanel;
     
     private JButton quitButton;
+    
+    private JButton stateButton;
+    
+    /**
+     * Variable simulant une session d'un utilisateur.<br/>
+     * Si elle vaut 0 alors l'utilisateur n'est pas connecté.<br/>
+     * Sinon, l'utilisateur de l'application est connecté en tant<br/> qu'usager d'idUsager sessionUsagerId
+     */
+    @Getter
+    @Setter
+    private int sessionUsagerid = 0;
     
     public PanelContainer(WindowApplication p)
     {
@@ -88,14 +99,14 @@ public class PanelContainer extends JPanel {
     {
         buildQuitButton();
         
-        buildListTraduction();
+        buildStateButton();
         
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
         bottomPanel.setBackground( new Color(254, 254, 226));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bottomPanel.add(Box.createHorizontalGlue());
-        bottomPanel.add(listTraduction);
+        bottomPanel.add(stateButton);
         bottomPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         bottomPanel.add(quitButton);
     }
@@ -107,13 +118,19 @@ public class PanelContainer extends JPanel {
         this.quitButton.addActionListener((ActionEvent e) -> {p.dispose();});
     }
     
-    private void buildListTraduction()
+    private void buildStateButton()
     {
-        this.listTraduction = new JComboBox();
-        this.listTraduction.addItem( new String("Français"));
-        this.listTraduction.addItem( new String("English"));
-        this.listTraduction.setFont( WindowApplication.fontButton);
+        this.stateButton = new JButton("Deconnexion");
+        this.stateButton.setFont( WindowApplication.fontButton );
+        this.stateButton.addActionListener(
+                (ActionEvent e) -> 
+                { 
+                    this.sessionUsagerid = 0;
+                    this.switchTo("welcome", WelcomePanel.SUBTITLE); 
+                }
+        );
     }
+
 
     /**
      * Permet de naviguer d'une vue à une autre dans la fenêtre de l'application.<br/>
@@ -123,6 +140,7 @@ public class PanelContainer extends JPanel {
      */
     public void switchTo(String page, String subtitle)
     {
+        System.out.println("PanelContainer - changement d'écran => " + page);
         setSubtitle(subtitle);
         layoutManager.show( centerPanel, page );
     }

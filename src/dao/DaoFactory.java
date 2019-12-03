@@ -27,6 +27,6 @@ public abstract class DaoFactory {
     }
     
     
-    public abstract StudentDao getStudentDao() throws DaoException;
+    public abstract UsagerDao getUsagerDao() throws DaoException;
     
 }

@@ -42,7 +42,7 @@ public abstract class JdbcDao<T> implements Dao<T> {
      */
     private void SQLConnect() throws ClassNotFoundException, SQLException {
         String driverClass = "org.apache.derby.jdbc.EmbeddedDriver";
-        String urlDatabase = "jdbc:derby://localhost:1527/Example";
+        String urlDatabase = "jdbc:derby://localhost:1527/COVOITURAGE";
         String userName = "test";
         String password = "test";
         Class.forName(driverClass);

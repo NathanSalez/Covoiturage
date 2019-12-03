@@ -29,7 +29,7 @@ public class WindowApplication extends JFrame {
     
     public WindowApplication()
     {
-        setTitle("Example");
+        setTitle("Covoiturage");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(new PanelContainer(this));
         this.setLocationRelativeTo(null); 

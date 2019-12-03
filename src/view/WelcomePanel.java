@@ -6,59 +6,61 @@
 package view;
 
 import dao.DaoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import service.StudentService;
-import view.model.StudentListTable;
+import service.UsagerService;
+import utils.PasswordUtils;
 
 /**
  *
- * @author user
+ * @author naysson
  */
 public class WelcomePanel extends javax.swing.JPanel {
 
-    private PanelContainer bPanel;
+    private PanelContainer parentPanel;
     
-    public final static String SUBTITLE = "Welcome";
+    private PasswordUtils passwordUtils;
     
-    private StudentService studentService;
+    private UsagerService usagerService;
     
+    public final static String SUBTITLE = "Inscription/Connexion";
     
-    private void majStudentTable()
-    {
-        try
-        {
-            viewStudentTable.setModel(
-                    new StudentListTable( 
-                            studentService.getStudentCollection() 
-                    )
-            );
-        } catch( DaoException | NullPointerException ex)
-        {
-             Logger.getLogger(WelcomePanel.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(null, "Impossible de récupérer la liste des étudiants.", "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     /**
      * Creates new form WelcomePanel
-     * @param basePanel
      */
-    public WelcomePanel(PanelContainer basePanel) {
+    public WelcomePanel(PanelContainer p) {
         initComponents();
         try
         {
-            studentService = StudentService.getInstance();            
-        } catch( DaoException ex)
+            passwordUtils = PasswordUtils.getInstance();
+            parentPanel = p;
+            usagerService = new UsagerService();
+        }catch(DaoException ex)
         {
-            JOptionPane.showMessageDialog(null, "Problème de connexion à la base de données. Fermeture de l'application.", "Erreur fatale", JOptionPane.ERROR_MESSAGE);
-            System.exit(1);
+            JOptionPane.showMessageDialog( null, ex.getMessage(), "Erreur fatale", JOptionPane.ERROR_MESSAGE);
         }
-        majStudentTable();
-            
-        basePanel.setSubtitle(SUBTITLE);
-        bPanel = basePanel;
     }
+    
+    /**
+     * Méthode à utiliser pour vider les champs de connexion ou d'inscription.
+     * @param inscription si true alors vidage des champs d'inscription, sinon vidage des champs de connexion.
+     */
+    private void viderChamps(boolean inscription)
+    {
+        if( inscription )
+        {
+            viewConfirmationInput.setText("");
+            viewPrenomInput.setText("");
+            viewNomInput.setText("");
+            viewLoginInput.setText("");
+            viewPasswordInput.setText("");
+            viewNumeroInput.setText("");
+        } else
+        {
+            viewLoginConnexionInput.setText("");
+            viewMdpConnexionInput.setText("");
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,49 +71,52 @@ public class WelcomePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        viewStudentTable = new javax.swing.JTable();
-        viewLabelName = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        viewFieldFirstName = new java.awt.TextField();
-        viewFieldName = new java.awt.TextField();
-        viewButtonRegister = new javax.swing.JButton();
-        viewButtonDelete = new javax.swing.JButton();
+        viewNomLabel = new javax.swing.JLabel();
+        viewPrenomLabel = new javax.swing.JLabel();
+        viewLoginLabel = new javax.swing.JLabel();
+        viewMdpLabel = new javax.swing.JLabel();
+        viewConfirmationLabel = new javax.swing.JLabel();
+        viewNumeroLabel = new javax.swing.JLabel();
+        viewNomInput = new javax.swing.JTextField();
+        viewPrenomInput = new javax.swing.JTextField();
+        viewLoginInput = new javax.swing.JTextField();
+        viewPasswordInput = new javax.swing.JPasswordField();
+        viewConfirmationInput = new javax.swing.JPasswordField();
+        viewNumeroInput = new javax.swing.JTextField();
+        viewInscriptionButton = new javax.swing.JButton();
+        viewLoginConnexionLabel = new javax.swing.JLabel();
+        viewLoginConnexionInput = new javax.swing.JTextField();
+        viewMdpConnexionLabel = new javax.swing.JLabel();
+        viewMdpConnexionInput = new javax.swing.JPasswordField();
+        viewConnexionButton = new javax.swing.JButton();
 
-        viewStudentTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3"
-            }
-        ));
-        jScrollPane1.setViewportView(viewStudentTable);
+        viewNomLabel.setText("Nom");
 
-        viewLabelName.setText("Name :");
+        viewPrenomLabel.setText("Prenom");
 
-        jLabel1.setText("First Name :");
+        viewLoginLabel.setText("Login");
 
-        viewFieldName.addActionListener(new java.awt.event.ActionListener() {
+        viewMdpLabel.setText("Mot de passe");
+
+        viewConfirmationLabel.setText("Confirmation");
+
+        viewNumeroLabel.setText("Numéro de tel");
+
+        viewInscriptionButton.setText("S'inscrire");
+        viewInscriptionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewFieldNameActionPerformed(evt);
+                viewInscriptionButtonActionPerformed(evt);
             }
         });
 
-        viewButtonRegister.setText("Register");
-        viewButtonRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonRegisterActionPerformed(evt);
-            }
-        });
+        viewLoginConnexionLabel.setText("Login");
 
-        viewButtonDelete.setText("Delete");
-        viewButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+        viewMdpConnexionLabel.setText("Mot de passe");
+
+        viewConnexionButton.setText("Se connecter");
+        viewConnexionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonDeleteActionPerformed(evt);
+                viewConnexionButtonActionPerformed(evt);
             }
         });
 
@@ -122,82 +127,141 @@ public class WelcomePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(viewLabelName)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(viewFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(viewFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(viewButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewNomLabel)
+                            .addComponent(viewPrenomLabel)
+                            .addComponent(viewLoginLabel)
+                            .addComponent(viewMdpLabel)
+                            .addComponent(viewConfirmationLabel))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewNomInput)
+                            .addComponent(viewPrenomInput)
+                            .addComponent(viewPasswordInput)
+                            .addComponent(viewLoginInput)
+                            .addComponent(viewConfirmationInput)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(viewNumeroLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewInscriptionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(viewNumeroInput))))
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewMdpConnexionLabel)
+                    .addComponent(viewLoginConnexionLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(viewLoginConnexionInput)
+                    .addComponent(viewMdpConnexionInput)
+                    .addComponent(viewConnexionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewButtonDelete))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewNomLabel)
+                    .addComponent(viewNomInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewLoginConnexionLabel)
+                    .addComponent(viewLoginConnexionInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewPrenomLabel)
+                    .addComponent(viewPrenomInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewMdpConnexionLabel)
+                    .addComponent(viewMdpConnexionInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewLoginLabel)
+                    .addComponent(viewLoginInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewConnexionButton))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewMdpLabel)
+                    .addComponent(viewPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewConfirmationLabel)
+                    .addComponent(viewConfirmationInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewNumeroLabel)
+                    .addComponent(viewNumeroInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(viewFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewLabelName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewButtonRegister)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(viewInscriptionButton)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonRegisterActionPerformed
-        String firstName = viewFieldFirstName.getText();
-        String name = viewFieldName.getText();
+    private void viewInscriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInscriptionButtonActionPerformed
         try
         {
-            studentService.registerStudent(name, firstName);
-            majStudentTable();
+            usagerService.inscrireUsager(
+                    viewNomInput.getText(), 
+                    viewPrenomInput.getText(),
+                    viewLoginInput.getText(),
+                    passwordUtils.encryptPassword( new String(viewPasswordInput.getPassword()) ),
+                    passwordUtils.encryptPassword( new String(viewConfirmationInput.getPassword()) ),
+                    viewNumeroInput.getText()
+                    );
+            
+            System.out.println("WelcomePanel - utilisateur " + viewLoginInput.getText() + " inscrit.");
+            viderChamps(true);
+            
+            // @todo a changer
+            parentPanel.switchTo("welcome", WelcomePanel.SUBTITLE);
+        } catch( DaoException | IllegalArgumentException ex)
+        {
+            
+            JOptionPane.showMessageDialog( null, ex.getMessage(), "Erreur fatale", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_viewInscriptionButtonActionPerformed
+
+    private void viewConnexionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewConnexionButtonActionPerformed
+        try
+        {
+            int idUsagerConnecte = usagerService.connecterUsager(
+                    viewLoginConnexionInput.getText(), 
+                    passwordUtils.encryptPassword( new String( viewMdpConnexionInput.getPassword() ) )
+                    );
+            
+            System.out.println("WelcomePanel - utilisateur " + viewLoginConnexionInput.getText() + " connecté.");
+            viderChamps(false);
+            parentPanel.setSessionUsagerid(idUsagerConnecte);
+            
+            // @todo a changer
+            parentPanel.switchTo("welcome", WelcomePanel.SUBTITLE);
         } catch( DaoException ex)
         {
-            Logger.getLogger(WelcomePanel.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Impossible d'insérer l'étudiant " + name + " dans la base de données.", "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-        catch( IllegalArgumentException ex)
+            JOptionPane.showMessageDialog( null, ex.getMessage(), "Erreur fatale", JOptionPane.ERROR_MESSAGE);
+        } catch( IllegalArgumentException ex)
         {
-            Logger.getLogger(WelcomePanel.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Saisie invalide : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog( null, ex.getMessage(), "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
-    }//GEN-LAST:event_viewButtonRegisterActionPerformed
-
-    private void viewFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFieldNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewFieldNameActionPerformed
-
-    private void viewButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonDeleteActionPerformed
-        //viewStudentTable.getSelectedRow();
-        //viewStudentTable.getModel().getValueAt(WIDTH, WIDTH);
-    }//GEN-LAST:event_viewButtonDeleteActionPerformed
+    }//GEN-LAST:event_viewConnexionButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton viewButtonDelete;
-    private javax.swing.JButton viewButtonRegister;
-    private java.awt.TextField viewFieldFirstName;
-    private java.awt.TextField viewFieldName;
-    private javax.swing.JLabel viewLabelName;
-    private javax.swing.JTable viewStudentTable;
+    private javax.swing.JPasswordField viewConfirmationInput;
+    private javax.swing.JLabel viewConfirmationLabel;
+    private javax.swing.JButton viewConnexionButton;
+    private javax.swing.JButton viewInscriptionButton;
+    private javax.swing.JTextField viewLoginConnexionInput;
+    private javax.swing.JLabel viewLoginConnexionLabel;
+    private javax.swing.JTextField viewLoginInput;
+    private javax.swing.JLabel viewLoginLabel;
+    private javax.swing.JPasswordField viewMdpConnexionInput;
+    private javax.swing.JLabel viewMdpConnexionLabel;
+    private javax.swing.JLabel viewMdpLabel;
+    private javax.swing.JTextField viewNomInput;
+    private javax.swing.JLabel viewNomLabel;
+    private javax.swing.JTextField viewNumeroInput;
+    private javax.swing.JLabel viewNumeroLabel;
+    private javax.swing.JPasswordField viewPasswordInput;
+    private javax.swing.JTextField viewPrenomInput;
+    private javax.swing.JLabel viewPrenomLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,10 +5,14 @@
  */
 package dao;
 
+import java.util.List;
+import model.Trajet;
+
 /**
  *
  * @author naysson
  */
 public interface TrajetDao {
     
+    //List<Trajet> research(FiltreTrajet f);
 }

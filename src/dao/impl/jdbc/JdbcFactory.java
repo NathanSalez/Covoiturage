@@ -8,7 +8,7 @@ package dao.impl.jdbc;
 
 import dao.DaoException;
 import dao.DaoFactory;
-import dao.StudentDao;
+import dao.UsagerDao;
 
 /**
  *
@@ -17,8 +17,8 @@ import dao.StudentDao;
 public class JdbcFactory extends DaoFactory {
 
     @Override
-    public StudentDao getStudentDao() throws DaoException
+    public UsagerDao getUsagerDao() throws DaoException
     {
-        return JdbcStudentDao.getInstance();
+        return JdbcUsagerDao.getInstance();
     }
 }

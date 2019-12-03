@@ -19,26 +19,44 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="viewLabelName" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="viewFieldName" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="viewNomLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewPrenomLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewLoginLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewMdpLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewConfirmationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="viewFieldFirstName" min="-2" pref="117" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="viewNomInput" max="32767" attributes="0"/>
+                          <Component id="viewPrenomInput" max="32767" attributes="0"/>
+                          <Component id="viewPasswordInput" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viewLoginInput" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viewConfirmationInput" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="viewButtonRegister" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="300" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="viewButtonDelete" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="viewNumeroLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="viewInscriptionButton" pref="113" max="32767" attributes="0"/>
+                          <Component id="viewNumeroInput" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="viewMdpConnexionLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewLoginConnexionLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="viewLoginConnexionInput" max="32767" attributes="0"/>
+                  <Component id="viewMdpConnexionInput" max="32767" attributes="0"/>
+                  <Component id="viewConnexionButton" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,101 +64,118 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="103" max="-2" attributes="0"/>
-                  <Component id="viewButtonDelete" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="viewNomLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewNomInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewLoginConnexionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewLoginConnexionInput" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="viewPrenomLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewPrenomInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewMdpConnexionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewMdpConnexionInput" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="viewLoginLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewLoginInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewConnexionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="viewMdpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewPasswordInput" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="viewConfirmationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewConfirmationInput" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="viewNumeroLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewNumeroInput" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="viewFieldFirstName" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="viewFieldName" min="-2" max="-2" attributes="0"/>
-                  <Component id="viewLabelName" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="viewButtonRegister" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <Component id="viewInscriptionButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTable" name="viewStudentTable">
-          <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-              </Table>
-            </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
-            </Property>
-            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-            </Property>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Component class="javax.swing.JLabel" name="viewLabelName">
+    <Component class="javax.swing.JLabel" name="viewNomLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name :"/>
+        <Property name="text" type="java.lang.String" value="Nom"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="viewPrenomLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="First Name :"/>
+        <Property name="text" type="java.lang.String" value="Prenom"/>
       </Properties>
     </Component>
-    <Component class="java.awt.TextField" name="viewFieldFirstName">
+    <Component class="javax.swing.JLabel" name="viewLoginLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Login"/>
+      </Properties>
     </Component>
-    <Component class="java.awt.TextField" name="viewFieldName">
+    <Component class="javax.swing.JLabel" name="viewMdpLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mot de passe"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="viewConfirmationLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Confirmation"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="viewNumeroLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Num&#xe9;ro de tel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="viewNomInput">
+    </Component>
+    <Component class="javax.swing.JTextField" name="viewPrenomInput">
+    </Component>
+    <Component class="javax.swing.JTextField" name="viewLoginInput">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="viewPasswordInput">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="viewConfirmationInput">
+    </Component>
+    <Component class="javax.swing.JTextField" name="viewNumeroInput">
+    </Component>
+    <Component class="javax.swing.JButton" name="viewInscriptionButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="S&apos;inscrire"/>
+      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewFieldNameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewInscriptionButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="viewButtonRegister">
+    <Component class="javax.swing.JLabel" name="viewLoginConnexionLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Register"/>
+        <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewButtonRegisterActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="viewButtonDelete">
+    <Component class="javax.swing.JTextField" name="viewLoginConnexionInput">
+    </Component>
+    <Component class="javax.swing.JLabel" name="viewMdpConnexionLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="text" type="java.lang.String" value="Mot de passe"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="viewMdpConnexionInput">
+    </Component>
+    <Component class="javax.swing.JButton" name="viewConnexionButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Se connecter"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewButtonDeleteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewConnexionButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
